@@ -1,0 +1,94 @@
+python is a good language to start with for making a roguelike
+there's a lot that can be done
+and it's very usable and fast to learn
+many roguelikes have been made in python
+it's a smooth ride to start with
+
+C and C++ are GOOD, but they are harder to learn as a beginner (am I a beginner?)
+
+DO NOT START WITH THE DREAM roguelike
+build some EXP making a smaller roguelike
+I.e. we are NOT working on mirth yet
+yet!
+but we will... : )
+
+Character
+
+Maps
+
+FOV
+
+pathfinding
+
+monsters
+
+combat?
+
+items
+
+GUI
+
+saving
+
+
+what does a small roguelike need?>
+a mechanic!
+what's the core of the game?
+if that#s the ONLY thing in the game, is it still fun?
+{
+up and down levels of a dream world
+higher level you move more space (it's broken up and can't be traverse) and you're more like to wake up
+lower levels you move less space (it's more contiguous and can be treaversed) and you're less likely to wake up
+} is this fun?
+
+7DRL - 7 day roguelike!
+around March
+(probably not good as your first, but good when you have experience)
+
+start small - expand as required
+
+
+r/roguelikedev is a good resource
+roguebasin
+roguelike radio
+assets??
+
+
+libtcod - python library
+- good tutorial starts here 
+
+summer code along event with the r/roguelikedev 
+
+rexpaint? 
+tilesets are available (or I could draw my own and git gud)
+
+
+starting points:
+core mechanic
+visual/sfx
+THEME - dream vs nightmare
+Music - nightclub
+{sci fi....
+pirates
+super heros} in demand
+
+
+XRL
+- based on existing IP
+(so you just focus on implementation)
+can be a good way to learn
+
+release early and often
+get a minimal playable state and release to a forum
+sharing saturday on the reddit
+
+keep a blog!
+concentrate all the info about your poject in one place
+useful for expo and GETTING work
+
+
+accessibility is important!
+documentation
+tutorial
+mouse support
+tilesets

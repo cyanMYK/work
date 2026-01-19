@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from tcod.context import Context
 from tcod.console import Console
 from tcod.map import compute_fov
 
@@ -14,6 +13,7 @@ if TYPE_CHECKING:
     from entity import Actor
     from game_map import GameMap
     from input_handlers import EventHandler
+
 
 class Engine:
     game_map: GameMap
@@ -51,4 +51,4 @@ class Engine:
             total_width=20,
         )
 
-        render_names_at_mouse_location(console=console, x= 21, y=44, engine=self)
+        render_names_at_mouse_location(console=console, x=21, y=44, engine=self)

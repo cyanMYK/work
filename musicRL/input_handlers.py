@@ -2,12 +2,13 @@ from __future__ import annotations
 
 from typing import Optional, TYPE_CHECKING
 
-import tcod.event
+import tcod
 
 from actions import Action, BumpAction, EscapeAction, WaitAction
 
 if TYPE_CHECKING:
     from engine import Engine
+
 
 MOVE_KEYS = {
     # Arrow keys.
@@ -45,6 +46,7 @@ WAIT_KEYS = {
     tcod.event.K_CLEAR,
 }
 
+
 class EventHandler(tcod.event.EventDispatch[Action]):
     def __init__(self, engine: Engine):
         self.engine = engine
@@ -56,17 +58,16 @@ class EventHandler(tcod.event.EventDispatch[Action]):
 
     def ev_mousemotion(self, event: tcod.event.MouseMotion) -> None:
         if self.engine.game_map.in_bounds(event.tile.x, event.tile.y):
-            self.engine.mouse_location = event.tile.x, event.tile.y
+            self.engine.mouse_location = int(event.tile.x), int(event.tile.y) #anoying deprecation here... go damn weak types
 
     def ev_quit(self, event: tcod.event.Quit) -> Optional[Action]:
         raise SystemExit()
-    
-    def on_render(self, console: tcod.Consol) -> None:
+
+    def on_render(self, console: tcod.Console) -> None:
         self.engine.render(console)
 
 
-class MainGameEventHandler(EventHandler):    
-
+class MainGameEventHandler(EventHandler):
     def handle_events(self, context: tcod.context.Context) -> None:
         for event in tcod.event.wait():
             context.convert_event(event)
@@ -79,6 +80,7 @@ class MainGameEventHandler(EventHandler):
             action.perform()
 
             self.engine.handle_enemy_turns()
+
             self.engine.update_fov()  # Update the FOV before the players next action.
 
     def ev_keydown(self, event: tcod.event.KeyDown) -> Optional[Action]:
@@ -87,7 +89,6 @@ class MainGameEventHandler(EventHandler):
         key = event.sym
 
         player = self.engine.player
-
 
         if key in MOVE_KEYS:
             dx, dy = MOVE_KEYS[key]
@@ -102,7 +103,8 @@ class MainGameEventHandler(EventHandler):
 
         # No valid key was pressed
         return action
-    
+
+
 class GameOverEventHandler(EventHandler):
     def handle_events(self, context: tcod.context.Context) -> None:
         for event in tcod.event.wait():
@@ -123,13 +125,15 @@ class GameOverEventHandler(EventHandler):
 
         # No valid key was pressed
         return action
-    
+
+
 CURSOR_Y_KEYS = {
     tcod.event.K_UP: -1,
     tcod.event.K_DOWN: 1,
     tcod.event.K_PAGEUP: -10,
     tcod.event.K_PAGEDOWN: 10,
 }
+
 
 class HistoryViewer(EventHandler):
     """Print the history on a larger window which can be navigated."""

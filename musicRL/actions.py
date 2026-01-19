@@ -35,9 +35,11 @@ class EscapeAction(Action):
     def perform(self) -> None:
         raise SystemExit()
 
+
 class WaitAction(Action):
     def perform(self) -> None:
         pass
+
 
 class ActionWithDirection(Action):
     def __init__(self, entity: Actor, dx: int, dy: int):
@@ -60,7 +62,7 @@ class ActionWithDirection(Action):
     def target_actor(self) -> Optional[Actor]:
         """Return the actor at this actions destination."""
         return self.engine.game_map.get_actor_at_location(*self.dest_xy)
-    
+
     def perform(self) -> None:
         raise NotImplementedError()
 
@@ -102,6 +104,7 @@ class MovementAction(ActionWithDirection):
             return  # Destination is blocked by an entity.
 
         self.entity.move(self.dx, self.dy)
+
 
 class BumpAction(ActionWithDirection):
     def perform(self) -> None:

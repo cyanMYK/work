@@ -357,7 +357,7 @@ class GameOverEventHandler(EventHandler):
         key = event.sym
 
         if key == tcod.event.K_ESCAPE:
-            action = EscapeAction(self.engine.player)
+            raise SystemExit()
 
         # No valid key was pressed
         return action
